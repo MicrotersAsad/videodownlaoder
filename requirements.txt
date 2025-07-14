@@ -1,7 +1,7 @@
 Flask==2.3.3
-yt-dlp  # এখানে কোনো নির্দিষ্ট সংস্করণ নেই
+yt-dlp
 requests==2.31.0
 flask-cors==4.0.0
-gunicorn==21.2.0
+
 urllib3==2.1.0
 certifi==2023.11.17
