@@ -6,7 +6,8 @@
       "use": "@vercel/python",
       "config": {
         "maxLambdaSize": "50mb",
-        "maxDuration": 60
+        "maxDuration": 60,
+        "runtime": "python3.9"  
       }
     },
     {
@@ -16,7 +17,11 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
+      "src": "/api/info",
+      "dest": "/api/download.py"
+    },
+    {
+      "src": "/api/download",
       "dest": "/api/download.py"
     },
     {
@@ -27,8 +32,5 @@
       "src": "/",
       "dest": "/static/index.html"
     }
-  ],
-  "env": {
-    "PYTHON_VERSION": "3.9"
-  }
+  ]
 }

@@ -11,7 +11,8 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 # Bot detection bypass headers
 USER_AGENTS = [
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -424,6 +425,10 @@ def health_check():
 
 def handler(event, context):
     from wsgiref.handlers import CGIHandler
+    from io import StringIO
+    import sys
+    
+    sys.stdout = StringIO()
     return CGIHandler().run(app)
 
 if __name__ == '__main__':
