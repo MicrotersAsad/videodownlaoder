@@ -421,9 +421,10 @@ def health_check():
     })
 
 # Vercel এর জন্য হ্যান্ডলার ফাংশন
+
 def handler(event, context):
-    from wsgi import wsgi_handler
-    return wsgi_handler(app, event, context)
+    from wsgiref.handlers import CGIHandler
+    return CGIHandler().run(app)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
