@@ -5,7 +5,8 @@
       "src": "api/download.py",
       "use": "@vercel/python",
       "config": {
-        "maxLambdaSize": "50mb"
+        "maxLambdaSize": "50mb",
+        "maxDuration": 60
       }
     },
     {
@@ -22,10 +23,5 @@
       "src": "/(.*)",
       "dest": "/static/$1"
     }
-  ],
-  "functions": {
-    "api/download.py": {
-      "maxDuration": 60
-    }
-  }
+  ]
 }

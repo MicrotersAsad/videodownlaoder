@@ -4,7 +4,7 @@ let currentVideoInfo = null;
 let isProcessing = false;
 
 // API base URL - update this to your backend URL
-const API_BASE_URL = 'https://your-backend-url.vercel.app/api';
+const API_BASE_URL = 'https://video-downloader-krwyv4a5p-microters-asads-projects.vercel.app/api';
 
 // DOM elements
 const videoUrlInput = document.getElementById('videoUrl');
