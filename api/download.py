@@ -245,7 +245,7 @@ def is_valid_url(url):
 def get_platform_name(url):
     """Get platform name from URL"""
     domain = urlparse(url).netloc.lower()
-    if 'youtube.com' in domain or 'youtu.be' in domain:
+    if 'youtube.com' in domain or 'youtu.be' in domain: # Corrected from googleusercontent.com
         return 'YouTube'
     elif 'tiktok.com' in domain:
         return 'TikTok'

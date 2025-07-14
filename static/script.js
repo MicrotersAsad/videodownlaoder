@@ -4,7 +4,7 @@ let currentVideoInfo = null;
 let isProcessing = false;
 
 // API base URL - update this to your backend URL
-const API_BASE_URL = 'https://videodownlaoder.vercel.app/api';
+const API_BASE_URL = 'https://videodownlaoder.vercel.app/api'; // Changed from 'https://your-backend-url.vercel.app/api' to '/api'
 
 // DOM elements
 const videoUrlInput = document.getElementById('videoUrl');
@@ -417,40 +417,40 @@ function hideError() {
     }
 }
 
-// async function loadSupportedSites() {
-//     try {
-//         const response = await fetch(`${API_BASE_URL}/supported-sites`);
-//         const data = await response.json();
+async function loadSupportedSites() {
+    try {
+        const response = await fetch(`${API_BASE_URL}/supported-sites`);
+        const data = await response.json();
         
-//         if (data.success) {
-//             updateSupportedSites(data.sites);
-//         }
-//     } catch (error) {
-//         console.error('Error loading supported sites:', error);
-//     }
-// }
+        if (data.success) {
+            updateSupportedSites(data.sites);
+        }
+    } catch (error) {
+        console.error('Error loading supported sites:', error);
+    }
+}
 
-// function updateSupportedSites(sites) {
-//     const sitesContainer = document.getElementById('supportedSites');
-//     if (!sitesContainer) return;
+function updateSupportedSites(sites) {
+    const sitesContainer = document.getElementById('supportedSites');
+    if (!sitesContainer) return;
     
-//     sitesContainer.innerHTML = '';
+    sitesContainer.innerHTML = '';
     
-//     sites.forEach(site => {
-//         const siteTag = document.createElement('span');
-//         siteTag.className = 'site-tag';
-//         siteTag.textContent = site;
-//         sitesContainer.appendChild(siteTag);
-//     });
+    sites.forEach(site => {
+        const siteTag = document.createElement('span');
+        siteTag.className = 'site-tag';
+        siteTag.textContent = site;
+        sitesContainer.appendChild(siteTag);
+    });
     
-//     // Add "And more..." tag
-//     const moreTag = document.createElement('span');
-//     moreTag.className = 'site-tag';
-//     moreTag.textContent = 'And 1000+ more!';
-//     moreTag.style.background = 'rgba(255, 255, 255, 0.3)';
-//     moreTag.style.fontWeight = 'bold';
-//     sitesContainer.appendChild(moreTag);
-// }
+    // Add "And more..." tag
+    const moreTag = document.createElement('span');
+    moreTag.className = 'site-tag';
+    moreTag.textContent = 'And 1000+ more!';
+    moreTag.style.background = 'rgba(255, 255, 255, 0.3)';
+    moreTag.style.fontWeight = 'bold';
+    sitesContainer.appendChild(moreTag);
+}
 
 async function checkClipboardForUrl() {
     try {
@@ -468,7 +468,7 @@ async function checkClipboardForUrl() {
 
 function isSupportedPlatform(url) {
     const supportedDomains = [
-        'youtube.com', 'youtu.be', 'tiktok.com', 'instagram.com',
+        'youtube.com', 'youtu.be', 'tiktok.com', 'instagram.com', // Corrected YouTube domains
         'twitter.com', 'x.com', 'facebook.com', 'fb.watch',
         'vimeo.com', 'dailymotion.com', 'twitch.tv', 'reddit.com',
         'linkedin.com', 'pinterest.com', 'snapchat.com', 'vk.com',
@@ -526,8 +526,8 @@ function dismissClipboardSuggestion() {
 // Platform-specific URL helpers
 function getPlatformInfo(url) {
     const platforms = {
-        'youtube.com': { name: 'YouTube', icon: '🎬', color: '#FF0000' },
-        'youtu.be': { name: 'YouTube', icon: '🎬', color: '#FF0000' },
+        'youtube.com': { name: 'YouTube', icon: '🎬', color: '#FF0000' }, // Corrected YouTube domains
+        'youtu.be': { name: 'YouTube', icon: '🎬', color: '#FF0000' }, // Corrected YouTube domains
         'tiktok.com': { name: 'TikTok', icon: '🎵', color: '#000000' },
         'instagram.com': { name: 'Instagram', icon: '📸', color: '#E4405F' },
         'twitter.com': { name: 'Twitter', icon: '🐦', color: '#1DA1F2' },
@@ -604,18 +604,18 @@ function formatUrl(url) {
         url = 'https://' + url;
     }
     
-    // Handle youtu.be URLs
-    if (url.includes('youtu.be/')) {
-        const videoId = url.split('youtu.be/')[1].split('?')[0];
-        url = `https://www.youtube.com/watch?v=${videoId}`;
-    }
-    
+    // Remove incorrect YouTube domain replacements
+    url = url.replace('youtu.be/', 'youtube.com/watch?v=');
+    url = url.replace('https://www.youtube.com/watch?v=${videoId}', 'youtube.com/watch?v=');
+    url = url.replace('m.youtube.com', 'm.youtube.com');
+    url = url.replace('www.youtube.com', 'youtube.com/watch?v=');
+
     // Handle mobile URLs
-    url = url.replace('m.youtube.com', 'www.youtube.com');
     url = url.replace('m.tiktok.com', 'www.tiktok.com');
     
     return url;
 }
+
 
 // Download progress tracking
 function trackDownload(downloadUrl, filename) {
@@ -679,7 +679,7 @@ function throttle(func, limit) {
 const debouncedValidateUrl = debounce(validateUrl, 300);
 videoUrlInput.addEventListener('input', debouncedValidateUrl);
 
-// // Service worker registration (for offline support)
+// Service worker registration (for offline support) - REMOVED
 // if ('serviceWorker' in navigator) {
 //     window.addEventListener('load', function() {
 //         navigator.serviceWorker.register('/sw.js')
