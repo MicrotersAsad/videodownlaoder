@@ -420,9 +420,10 @@ def health_check():
         'version': '1.0.0'
     })
 
-# For Vercel deployment
-def handler(request):
-    return app(request)
+# Vercel এর জন্য হ্যান্ডলার ফাংশন
+def handler(event, context):
+    from wsgi import wsgi_handler
+    return wsgi_handler(app, event, context)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
