@@ -1,5 +1,5 @@
-flask==2.3.3
-yt-dlp==2023.12.30
+Flask==2.3.3
+yt-dlp  # এখানে কোনো নির্দিষ্ট সংস্করণ নেই
 requests==2.31.0
 flask-cors==4.0.0
 gunicorn==21.2.0
