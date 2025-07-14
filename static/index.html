@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Video Downloader - Full Stack</title>
+    <meta name="description" content="Download videos from YouTube, TikTok, Instagram, Twitter and 1000+ sites with bot detection bypass">
+    <meta name="keywords" content="video downloader, youtube downloader, tiktok downloader, instagram downloader">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 Advanced Video Downloader</h1>
+            <p class="subtitle">Download videos from 1000+ sites with bot detection bypass</p>
+        </header>
+        
+        <main>
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="videoUrl">🔗 Video URL:</label>
+                    <div class="input-wrapper">
+                        <input type="url" id="videoUrl" placeholder="Paste your video URL here (YouTube, TikTok, Instagram, etc.)" />
+                        <button class="paste-btn" onclick="pasteFromClipboard()">📋</button>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-secondary" onclick="getVideoInfo()">
+                        <span id="infoText">ℹ️ Get Info</span>
+                    </button>
+                    <button class="btn btn-primary" onclick="downloadVideo()">
+                        <span id="downloadText">📥 Download</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="video-info" id="videoInfo">
+                <div class="info-content">
+                    <img id="videoThumbnail" src="" alt="Video thumbnail" />
+                    <div class="info-details">
+                        <h3 id="videoTitle"></h3>
+                        <p><strong>Platform:</strong> <span id="videoPlatform"></span></p>
+                        <p><strong>Duration:</strong> <span id="videoDuration"></span></p>
+                        <p><strong>Uploader:</strong> <span id="videoUploader"></span></p>
+                        <p><strong>Views:</strong> <span id="videoViews"></span></p>
+                        <p><strong>Upload Date:</strong> <span id="videoDate"></span></p>
+                        <p id="videoDescription"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quality-section">
+                <label>🎯 Select Quality:</label>
+                <div class="quality-selector" id="qualitySelector">
+                    <div class="quality-btn" data-quality="best">Best</div>
+                    <div class="quality-btn selected" data-quality="720p">720p</div>
+                    <div class="quality-btn" data-quality="480p">480p</div>
+                    <div class="quality-btn" data-quality="360p">360p</div>
+                    <div class="quality-btn" data-quality="audio">Audio Only</div>
+                </div>
+            </div>
+
+            <div class="progress-section">
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="status" id="statusMessage"></div>
+            </div>
+
+            <div class="download-section" id="downloadSection">
+                <h3>📥 Download Ready!</h3>
+                <div class="download-info">
+                    <p><strong>Title:</strong> <span id="dlTitle"></span></p>
+                    <p><strong>Format:</strong> <span id="dlFormat"></span></p>
+                    <p><strong>Quality:</strong> <span id="dlQuality"></span></p>
+                    <p><strong>Size:</strong> <span id="dlSize"></span></p>
+                </div>
+                <a href="#" class="download-link" id="downloadLink" download>
+                    🎬 Download Now
+                </a>
+                <p class="download-note">⚠️ If download doesn't start automatically, right-click and select "Save link as..."</p>
+            </div>
+        </main>
+
+        <footer>
+            <div class="supported-sites">
+                <h3>🌐 Supported Sites</h3>
+                <div class="site-tags" id="supportedSites">
+                    <span class="site-tag">YouTube</span>
+                    <span class="site-tag">TikTok</span>
+                    <span class="site-tag">Instagram</span>
+                    <span class="site-tag">Twitter/X</span>
+                    <span class="site-tag">Facebook</span>
+                    <span class="site-tag">Vimeo</span>
+                    <span class="site-tag">Dailymotion</span>
+                    <span class="site-tag">Reddit</span>
+                    <span class="site-tag">Twitch</span>
+                    <span class="site-tag">LinkedIn</span>
+                    <span class="site-tag">Pinterest</span>
+                    <span class="site-tag">Snapchat</span>
+                    <span class="site-tag">And 1000+ more!</span>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <h4>🛡️ Bot Detection Bypass</h4>
+                    <p>Advanced headers and user agent rotation to bypass bot detection systems</p>
+                </div>
+                <div class="feature">
+                    <h4>🚀 High Speed</h4>
+                    <p>Optimized download speeds with parallel processing and CDN support</p>
+                </div>
+                <div class="feature">
+                    <h4>📱 Multiple Formats</h4>
+                    <p>Support for MP4, MP3, WEBM, and more formats in various qualities</p>
+                </div>
+                <div class="feature">
+                    <h4>🔒 Privacy Focused</h4>
+                    <p>No data stored, all processing done securely without logging</p>
+                </div>
+                <div class="feature">
+                    <h4>📲 Mobile Friendly</h4>
+                    <p>Responsive design that works perfectly on all devices</p>
+                </div>
+                <div class="feature">
+                    <h4>⚡ Real-time Processing</h4>
+                    <p>Instant video analysis and download link generation</p>
+                </div>
+            </div>
+
+            <div class="disclaimer">
+                <p><strong>⚠️ Disclaimer:</strong> This tool is for educational purposes only. Please respect copyright laws and terms of service of the platforms you download from.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
