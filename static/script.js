@@ -417,40 +417,40 @@ function hideError() {
     }
 }
 
-async function loadSupportedSites() {
-    try {
-        const response = await fetch(`${API_BASE_URL}/supported-sites`);
-        const data = await response.json();
+// async function loadSupportedSites() {
+//     try {
+//         const response = await fetch(`${API_BASE_URL}/supported-sites`);
+//         const data = await response.json();
         
-        if (data.success) {
-            updateSupportedSites(data.sites);
-        }
-    } catch (error) {
-        console.error('Error loading supported sites:', error);
-    }
-}
+//         if (data.success) {
+//             updateSupportedSites(data.sites);
+//         }
+//     } catch (error) {
+//         console.error('Error loading supported sites:', error);
+//     }
+// }
 
-function updateSupportedSites(sites) {
-    const sitesContainer = document.getElementById('supportedSites');
-    if (!sitesContainer) return;
+// function updateSupportedSites(sites) {
+//     const sitesContainer = document.getElementById('supportedSites');
+//     if (!sitesContainer) return;
     
-    sitesContainer.innerHTML = '';
+//     sitesContainer.innerHTML = '';
     
-    sites.forEach(site => {
-        const siteTag = document.createElement('span');
-        siteTag.className = 'site-tag';
-        siteTag.textContent = site;
-        sitesContainer.appendChild(siteTag);
-    });
+//     sites.forEach(site => {
+//         const siteTag = document.createElement('span');
+//         siteTag.className = 'site-tag';
+//         siteTag.textContent = site;
+//         sitesContainer.appendChild(siteTag);
+//     });
     
-    // Add "And more..." tag
-    const moreTag = document.createElement('span');
-    moreTag.className = 'site-tag';
-    moreTag.textContent = 'And 1000+ more!';
-    moreTag.style.background = 'rgba(255, 255, 255, 0.3)';
-    moreTag.style.fontWeight = 'bold';
-    sitesContainer.appendChild(moreTag);
-}
+//     // Add "And more..." tag
+//     const moreTag = document.createElement('span');
+//     moreTag.className = 'site-tag';
+//     moreTag.textContent = 'And 1000+ more!';
+//     moreTag.style.background = 'rgba(255, 255, 255, 0.3)';
+//     moreTag.style.fontWeight = 'bold';
+//     sitesContainer.appendChild(moreTag);
+// }
 
 async function checkClipboardForUrl() {
     try {
@@ -679,18 +679,18 @@ function throttle(func, limit) {
 const debouncedValidateUrl = debounce(validateUrl, 300);
 videoUrlInput.addEventListener('input', debouncedValidateUrl);
 
-// Service worker registration (for offline support)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
-            .then(function(registration) {
-                console.log('SW registered: ', registration);
-            })
-            .catch(function(registrationError) {
-                console.log('SW registration failed: ', registrationError);
-            });
-    });
-}
+// // Service worker registration (for offline support)
+// if ('serviceWorker' in navigator) {
+//     window.addEventListener('load', function() {
+//         navigator.serviceWorker.register('/sw.js')
+//             .then(function(registration) {
+//                 console.log('SW registered: ', registration);
+//             })
+//             .catch(function(registrationError) {
+//                 console.log('SW registration failed: ', registrationError);
+//             });
+//     });
+// }
 
 // Analytics and tracking (optional)
 function trackEvent(eventName, data = {}) {
