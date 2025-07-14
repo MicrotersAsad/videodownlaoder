@@ -8,9 +8,12 @@ from urllib.parse import urlparse, parse_qs
 import time
 import random
 from flask_cors import CORS
+import logging  # এখানে যোগ করুন
 
 app = Flask(__name__)
 CORS(app)
+
+# লগিং সেটআপ
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 # Bot detection bypass headers
